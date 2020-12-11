@@ -11,9 +11,9 @@
 
 	<div class="clock">
 		<div class="clock-face">
-			<div class="hand hour-hand"></div>
+			<div class="hand hour-hand" id="hour"></div>
 			<div class="hand min-hand"></div>
-			<div class="hand second-hand"></div>
+			<div class="hand second-hand" id="second"></div>
 		</div>
 	</div>
 
@@ -59,7 +59,7 @@
 			/* account for the height of the clock hands */
 		}
 
-		.hand {
+		.hand{
 			width: 50%;
 			height: 6px;
 			background: black;
@@ -83,7 +83,7 @@
 	</style>
 
 	<script>
-		let osecond_hand = document.querySelector('.second-hand')
+		let osecond_hand = document.querySelector('#second')
 		let omin_hand = document.querySelector('.min-hand')
 		let ohour_hand = document.querySelector('.hour-hand')
 
@@ -93,12 +93,16 @@
 			secondDegrees = time.getSeconds() * 6 + 90
 			minDegrees = time.getMinutes() * 6 +time.getSeconds()/10+ 90
 			hourDegrees = time.getHours() * 30 +time.getMinutes()/2+ 90
-			if(secondDegrees === 360 || minDegrees === 90 || hourDegrees === 90){
-				osecond_hand.style.transition = ''
+			//去除闪
+			if(secondDegrees === 90 || minDegrees === 90 || hourDegrees === 90){
+				osecond_hand.style.transition = 'all 0s'
+				console.log(getComputedStyle(osecond_hand,'null').getPropertyValue("transition"))
 			}
-			if(secondDegrees === 102 || minDegrees === 96 || hourDegrees === 96){
-				osecond_hand.style.transition =`transition: all 0.05s`;
+			if(secondDegrees === 96 || minDegrees === 96 || hourDegrees === 96){
+				osecond_hand.style.transition =`all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1)`;
+				console.log(getComputedStyle(osecond_hand,'null').getPropertyValue("transition"))
 			}
+
 			console.log(secondDegrees)
 			osecond_hand.style.transform = `rotate(${secondDegrees}deg)`;
 			omin_hand.style.transform = `rotate(${minDegrees}deg)`;

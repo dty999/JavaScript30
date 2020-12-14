@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Key Detection</title>
-  <script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
+	<meta charset="UTF-8">
+	<title>Key Detection</title>
+	<script type="text/javascript" src="https://www.cornify.com/js/cornify.js"></script>
 </head>
+
 <body>
-<script>
-</script>
+	<script>
+		const press = []
+		const secertCode = 'nihao'
+		function fn(e) {
+			press.push(e.key)
+			press.length > secertCode.length ? press.shift():null
+			if(press.join('').includes(secertCode)){
+				cornify_add()
+				console.log('yes')
+			}
+		}
+		window.addEventListener('keypress',fn)
+	</script>
 </body>
+
 </html>

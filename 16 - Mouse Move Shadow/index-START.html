@@ -1,40 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Mouse Shadow</title>
+	<meta charset="UTF-8">
+	<title>Mouse Shadow</title>
 </head>
+
 <body>
 
-  <div class="hero">
-    <h1 contenteditable>🔥WOAH!</h1>
-  </div>
+	<div class="hero">
+		<h1 contenteditable>🔥WOAH!</h1>
+	</div>
 
-  <style>
-  html {
-    color: black;
-    font-family: sans-serif;
-  }
+	<style>
+		html {
+			color: black;
+			font-family: sans-serif;
+		}
 
-  body {
-    margin: 0;
-  }
+		body {
+			margin: 100px;
+		}
 
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-  }
+		.hero {
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: black;
+			border: aqua 1px solid;
+			position: relative;
+		}
 
-  h1 {
-    text-shadow: 10px 10px 0 rgba(0,0,0,1);
-    font-size: 100px;
-  }
-  </style>
+		h1 {
+			text-shadow: 10px 10px 0 rgba(0, 0, 0, .4);
+			font-size: 60px;
+			/* background-color: aqua; */
+		}
+	</style>
 
-<script>
-</script>
+	<script>
+		
+		const hero = document.querySelector('.hero')
+		const h1 = document.querySelector('h1')
+		const r = 500
+
+		function move(e) {
+			const {offsetWidth:width,offsetHeight:height} = hero
+			let {offsetX:x,offsetY:y} = e
+			console.log(x)
+
+			if(this != e.target){
+				console.log(x)
+				x += e.target.offsetLeft
+				y += e.target.offsetTop
+				console.log(e.target.offsetLeft)
+				
+			}
+			const xR = Math.round((x / width)*r-r/2)
+			const yR = Math.round((y/height)*r - r/2)
+			// console.log(xR,yR)
+			h1.style.textShadow = `
+					${xR}px ${yR}px 0px rgba(0,0,0,0.4)
+					,${-yR}px ${xR}px 0px rgba(123,0,0,0.4)
+					,${-xR}px ${-yR}px 0px rgba(0,123,0,0.4)
+
+			`
+
+		}
+
+
+		hero.addEventListener('mousemove',move)
+
+	</script>
 </body>
+
 </html>

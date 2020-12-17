@@ -12,7 +12,7 @@
 	<nav>
 		<ul class="menu">
 			<li><a href="">Home</a></li>
-			<li><a href="">Order Status</a></li>
+			<li><a href="">Order <br>Status</a></li>
 			<li><a href="">Tweets</a></li>
 			<li><a href="">Read Our History</a></li>
 			<li><a href="">Contact Us</a></li>
@@ -38,7 +38,27 @@
 	</div>
 
 	<script>
-    // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+		// 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+
+		const heightLight = document.createElement('span')
+		heightLight.classList.add('highlight')
+		document.body.append(heightLight)
+
+		function heightLightLink(e) {
+			const rect = this.getBoundingClientRect()
+			heightLight.style.width = rect.width+'px'
+			heightLight.style.height = rect.height+'px'
+			heightLight.style.transform = `
+				translate(${rect.left + scrollX}px,${rect.top+scrollY}px)
+			`
+		}
+
+		const links = document.querySelectorAll('a')
+		for (link of links) {
+			link.addEventListener('mouseenter',heightLightLink)
+		}
+
+
 	</script>
 </body>
 

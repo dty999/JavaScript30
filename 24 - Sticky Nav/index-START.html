@@ -216,24 +216,23 @@
 		console.log(offsetTop)
 
 		function scroll(e) {
-			if(scrollY > offsetTop){
-				document.body.classList.add('fix-nav')
-				document.body.style.paddingTop = nav.offsetHeight +'px'
 
-			}else{
-				document.body.classList.remove('fix-nav')
-				document.body.style.paddingTop = 0+'px'
+			scrollY > offsetTop ?
+				(() => {
+					document.body.classList.add('fix-nav')
+					document.body.style.paddingTop = nav.offsetHeight + 'px'
+				})()
+				: (() => {
+					document.body.classList.remove('fix-nav')
+					document.body.style.paddingTop = 0 + 'px'
+				})()
 
-			}
 
-
-		
-			
 		}
 
 
 
-		window.addEventListener('scroll',scroll)
+		window.addEventListener('scroll', scroll)
 
 	</script>
 

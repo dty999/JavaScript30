@@ -1,48 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Understanding JavaScript's Capture</title>
+	<meta charset="UTF-8">
+	<title>Understanding JavaScript's Capture</title>
 </head>
+
 <body class="bod">
 
-  <div class="one">
-    <div class="two">
-      <div class="three">
-      </div>
-    </div>
-  </div>
+	<div class="one">
+		<div class="two">
+			<div class="three">
+			</div>
+		</div>
+	</div>
 
-<style>
-  html {
-    box-sizing: border-box;
-  }
-  
-  *, *:before, *:after { 
-    box-sizing: inherit; 
-  }
+	<style>
+		html {
+			box-sizing: border-box;
+		}
 
-  div {
-    width: 100%;
-    padding: 100px;
-  }
+		*,
+		*:before,
+		*:after {
+			box-sizing: inherit;
+		}
 
-  .one {
-    background: thistle;
-  }
+		div {
+			width: 100%;
+			padding: 100px;
+		}
 
-  .two {
-    background: mistyrose;
-  }
+		.one {
+			background: thistle;
+		}
 
-  .three {
-    background: coral;
-  }
-</style>
+		.two {
+			background: mistyrose;
+		}
 
-<button></button>
-<script>
+		.three {
+			background: coral;
+		}
+	</style>
 
-</script>
+	<button></button>
+	<script>
+		function log(e) {
+	
+			console.log(e.target)
+		}
+
+		// document.querySelectorAll('div').forEach(div=>{
+		// 	div.addEventListener('click',log,{
+		// 		capture:false,
+		// 		// once:true
+		// 	})
+		// })
+		//事件冒泡和捕获机制是,事件在元素上的触发顺序,不是事件在传递
+		document.querySelector('.two').addEventListener('click',log)
+	</script>
 </body>
+
 </html>
